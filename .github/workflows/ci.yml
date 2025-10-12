@@ -32,7 +32,7 @@ jobs:
       - name: install build tools
         run: |
           apt --quiet update --yes
-          apt --quiet install --yes cmake build-essential git curl zip unzip tar
+          apt --quiet install --yes build-essential cmake git curl zip unzip tar
       - name: install vcpkg
         run: |
           git clone https://github.com/microsoft/vcpkg.git vcpkg-installation
@@ -53,3 +53,31 @@ jobs:
         run: |
           cd out
           make --jobs=$(nproc)
+##### macosx #####
+  macosx:
+    runs-on: macos-latest
+    steps:
+    - name: workaround python2 and python3 issue when upgrading python
+      run : |
+        rm -rf /usr/local/bin/2to3*
+        rm -rf /usr/local/bin/idle3*
+        rm -rf /usr/local/bin/pydoc3*
+        rm -rf /usr/local/bin/python3
+        rm -rf /usr/local/bin/python3-config
+        rm -rf /usr/local/bin/python3*
+        rm -rf /usr/local/bin/python3*-config
+    - name: git clone
+      uses: myci-actions/checkout@main
+      with:
+        submodules: true #  non-recursive, no remote
+    - name: install ci tools
+      run: brew install cmake
+    - name: generate cmake build files
+      run: |
+        mkdir out
+        cd out
+        cmake ../build/cmake
+    - name: build
+      run: |
+        cd out
+        make --jobs=$(nproc)
