@@ -8,6 +8,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        config:
+          - Debug
+          - Release
         include:
           # - {os: debian, codename: bullseye, image_owner: }
           # - {os: debian, codename: bullseye, image_owner: , labels: [i386,docker]}
@@ -61,10 +64,20 @@ jobs:
       - name: build
         run: |
           cd out
-          cmake --build . --parallel
+          cmake --build . --parallel --config ${{ matrix.config }}
+      - name: test
+        run: |
+          cd out
+          cmake --build . --config ${{ matrix.config }} --target test
 ##### macosx #####
   macosx:
     runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - Debug
+          - Release
     steps:
     - name: workaround python2 and python3 issue when upgrading python
       run : |
@@ -99,13 +112,26 @@ jobs:
     - name: build
       run: |
         cd out
-        cmake --build . --parallel
+        cmake --build . --parallel --config ${{ matrix.config }}
+    - name: test
+      run: |
+        cd out
+        cmake --build . --config ${{ matrix.config }} --target test
 ##### windows #####
   windows:
     runs-on: windows-latest
     defaults:
       run:
         shell: powershell
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - Debug
+          - Release
+        arch:
+          - Win32
+          - x64
     name: windows
     steps:
     - name: git clone
@@ -121,8 +147,12 @@ jobs:
       run: |
         mkdir out
         cd out
-        cmake ../build/cmake
+        cmake -A ${{ matrix.arch }} ../build/cmake
     - name: build
       run: |
         cd out
-        cmake --build . --parallel
+        cmake --build . --parallel --config ${{ matrix.config }}
+    - name: test
+      run: |
+          cd out
+          cmake --build . --config ${{ matrix.config }} --target test
