@@ -31,8 +31,8 @@ jobs:
     steps:
       - name: install build tools
         run: |
-          sudo apt --quiet update --yes
-          sudo apt --quiet install --yes cmake git
+          apt --quiet update --yes
+          apt --quiet install --yes cmake git
       - name: git clone
         uses: myci-actions/checkout@main
       - name: generate cmake
