@@ -17,7 +17,7 @@ jobs:
         #   - {os: debian, codename: bookworm, image_owner: arm32v7/, labels: [ubuntu-24.04-arm]}
         #   - {os: debian, codename: bookworm, image_owner: arm64v8/, labels: [ubuntu-24.04-arm]}
           - {os: debian, codename: trixie, image_owner: }
-          - {os: debian, codename: trixie, image_owner: arm32v7/, labels: [ubuntu-24.04-arm]}
+        #   - {os: debian, codename: trixie, image_owner: arm32v7/, labels: [ubuntu-24.04-arm]}
           - {os: debian, codename: trixie, image_owner: arm64v8/, labels: [ubuntu-24.04-arm]}
           # - {os: ubuntu, codename: focal, image_owner: }
           # - {os: ubuntu, codename: jammy, image_owner: }
@@ -32,7 +32,7 @@ jobs:
       - name: install build tools
         run: |
           apt --quiet update --yes
-          apt --quiet install --yes cmake make g++ git curl zip unzip tar
+          apt --quiet install --yes cmake build-essential git curl zip unzip tar
       - name: install vcpkg
         run: |
           git clone https://github.com/microsoft/vcpkg.git vcpkg-installation
