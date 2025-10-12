@@ -11,7 +11,7 @@ if(NOT VCPKG_ROOT)
     set(VCPKG_ROOT "$ENV{VCPKG_ROOT}" CACHE INTERNAL "" FORCE)
 else()
     # Set environment variable VCPKG_ROOT from our cache variable, because this is a standard VCPKG variable
-    # and its required to be set by VCPKG. Also its value may affect some scripts running in the VCPKG context.
+    # and it is required to be set by VCPKG. Also its value may affect some scripts running in the VCPKG context.
     set(ENV{VCPKG_ROOT} "${VCPKG_ROOT}")
 endif()
 
