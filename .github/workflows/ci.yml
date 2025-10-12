@@ -106,7 +106,7 @@ jobs:
     defaults:
       run:
         shell: powershell
-    name: vcpkg - windows
+    name: windows
     steps:
     - name: git clone
       uses: actions/checkout@v4
