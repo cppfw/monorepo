@@ -49,6 +49,7 @@ jobs:
           submodules: true #  non-recursive, no remote
       - name: generate cmake build files
         run: |
+          ls /__w/monorepo/monorepo/vcpkg-installation/scripts/buildsystems/
           mkdir out
           cd out
           cmake ../build/cmake
