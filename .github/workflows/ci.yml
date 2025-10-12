@@ -29,6 +29,10 @@ jobs:
     container: ${{ matrix.image_owner }}${{ matrix.os }}:${{ matrix.codename }}
     name: linux - ${{ matrix.image_owner }}${{ matrix.os }}:${{ matrix.codename }}
     steps:
+      - name: install build tools
+        run: |
+          sudo apt --quiet update --yes
+          sudo apt --quiet install --yes cmake git
       - name: git clone
         uses: myci-actions/checkout@main
       - name: generate cmake
