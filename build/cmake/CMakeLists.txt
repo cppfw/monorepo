@@ -27,7 +27,7 @@ set_property(GLOBAL PROPERTY USE_FOLDERS TRUE)
 set_property(GLOBAL PROPERTY PREDEFINED_TARGETS_FOLDER "CMake")
 set_property(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}" PROPERTY VS_STARTUP_PROJECT "ruisapp-opengl-test")
 
-set(CPPFW_MONOREPO_BUILD True)
+set(CPPFW_MONOREPO True)
 
 function(add_subdir name)
     add_subdirectory(../../repos/${name}/build/cmake ${name})
