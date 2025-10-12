@@ -32,7 +32,7 @@ jobs:
       - name: install build tools
         run: |
           apt --quiet update --yes
-          apt --quiet install --yes cmake git curl zip unzip tar
+          apt --quiet install --yes cmake make git curl zip unzip tar
       - name: install vcpkg
         run: |
           git clone https://github.com/microsoft/vcpkg.git vcpkg-installation
