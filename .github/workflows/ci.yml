@@ -33,6 +33,10 @@ jobs:
         run: |
           apt --quiet update --yes
           apt --quiet install --yes build-essential cmake git curl zip unzip tar
+      - name: git clone
+        uses: myci-actions/checkout@main
+        with:
+          submodules: true #  non-recursive, no remote
       - name: install vcpkg
         run: |
           git clone https://github.com/microsoft/vcpkg.git vcpkg-installation
@@ -43,10 +47,6 @@ jobs:
       - name: add VCPKG_ROOT to PATH
         uses: myci-actions/export-env-var@main
         with: {name: PATH, value: "$PATH:$VCPKG_ROOT"}
-      - name: git clone
-        uses: myci-actions/checkout@main
-        with:
-          submodules: true #  non-recursive, no remote
       - name: generate cmake build files
         run: |
           ls $VCPKG_ROOT
@@ -72,6 +72,10 @@ jobs:
         rm -rf /usr/local/bin/python3-config
         rm -rf /usr/local/bin/python3*
         rm -rf /usr/local/bin/python3*-config
+    - name: git clone
+      uses: myci-actions/checkout@main
+      with:
+        submodules: true #  non-recursive, no remote
     - name: install vcpkg
       run: |
         git clone https://github.com/microsoft/vcpkg.git vcpkg-installation
@@ -82,10 +86,6 @@ jobs:
     - name: add VCPKG_ROOT to PATH
       uses: myci-actions/export-env-var@main
       with: {name: PATH, value: "$PATH:$VCPKG_ROOT"}
-    - name: git clone
-      uses: myci-actions/checkout@main
-      with:
-        submodules: true #  non-recursive, no remote
     - name: install ci tools
       run: brew install cmake
     - name: generate cmake build files
