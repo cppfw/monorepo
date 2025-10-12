@@ -32,7 +32,7 @@ jobs:
       - name: install build tools
         run: |
           apt --quiet update --yes
-          apt --quiet install --yes build-essential cmake git curl zip unzip tar
+          apt --quiet install --yes build-essential cmake pkg-config git curl zip unzip tar
       - name: git clone
         uses: myci-actions/checkout@main
         with:
@@ -96,4 +96,4 @@ jobs:
     - name: build
       run: |
         cd out
-        make --jobs=$(nproc)
+        make --jobs=$(sysctl -n hw.ncpu)
