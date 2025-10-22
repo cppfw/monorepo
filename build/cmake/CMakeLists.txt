@@ -17,6 +17,17 @@ endif()
 
 set(CMAKE_TOOLCHAIN_FILE ${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake)
 
+# In case of ios we always build for simulator for now.
+# Need to do this check before project() declaration, so use CMAKE_SYSTEM_NAME instead of IOS variable.
+if(CMAKE_SYSTEM_NAME STREQUAL iOS)
+    # In order to install ios _simulator_ vcpkg packages we need to set the vcpkg target triplet.
+    set(VCPKG_TARGET_TRIPLET arm64-ios-simulator)
+
+    # TODO: not needed? Remove.
+    # set(CMAKE_OSX_SYSROOT iphonesimulator)
+
+endif()
+
 # Set myci config directory for find_package(myci). The path has to be absolute.
 set(myci_DIR ../../repos/myci/src/cmake)
 cmake_path(ABSOLUTE_PATH myci_DIR NORMALIZE)

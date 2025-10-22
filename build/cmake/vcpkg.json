@@ -3,7 +3,10 @@
         "freetype",
         "libjpeg-turbo",
         "libpng",
-        "glew",
+        {
+            "name": "glew",
+            "platform": "!ios"
+        },
         {
             "name": "angle",
             "platform": "windows"
