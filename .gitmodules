@@ -86,3 +86,7 @@
 	path = repos/tml
 	url = ../tml
 	branch = latest
+[submodule "repos/fsif"]
+	path = repos/fsif
+	url = ../fsif
+	branch = latest
