@@ -2,10 +2,6 @@
 	path = repos/utki
 	url = ../utki
 	branch = latest
-[submodule "repos/papki"]
-	path = repos/papki
-	url = ../papki
-	branch = latest
 [submodule "repos/myci"]
 	path = repos/myci
 	url = ../myci

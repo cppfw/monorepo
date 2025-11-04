@@ -45,7 +45,6 @@ function(add_subdir name)
 endfunction()
 
 add_subdir(utki)
-add_subdir(papki) # TODO: remove
 add_subdir(fsif)
 add_subdir(cssom)
 add_subdir(mikroxml)
