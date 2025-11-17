@@ -34,6 +34,8 @@ cmake_path(ABSOLUTE_PATH myci_DIR NORMALIZE)
 
 project(cppfw)
 
+find_package(myci CONFIG REQUIRED)
+
 set_property(GLOBAL PROPERTY USE_FOLDERS TRUE)
 set_property(GLOBAL PROPERTY PREDEFINED_TARGETS_FOLDER "CMake")
 set_property(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}" PROPERTY VS_STARTUP_PROJECT "ruisapp-opengl-test")
@@ -41,7 +43,10 @@ set_property(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}" PROPERTY VS_STARTUP_PROJECT
 set(CPPFW_MONOREPO True)
 
 function(add_subdir name)
-    add_subdirectory(../../repos/${name}/build/cmake ${name})
+    myci_add_subdirectory(../../repos/${name}/build/cmake
+        BINARY_DIR
+            ${name}
+    )
 endfunction()
 
 add_subdir(utki)
@@ -67,11 +72,15 @@ add_subdir(ruis-render-opengles)
 add_subdir(ruisapp)
 
 set(apps_dir "${CMAKE_CURRENT_SOURCE_DIR}/../../apps")
-file(GLOB apps
-    LIST_DIRECTORIES TRUE
-    RELATIVE "${apps_dir}"
+file(
+    GLOB
+        apps
+    LIST_DIRECTORIES
+        TRUE
+    RELATIVE
+        "${apps_dir}"
     CONFIGURE_DEPENDS
-    "${apps_dir}/*"
+        "${apps_dir}/*"
 )
 
 foreach(app ${apps})
