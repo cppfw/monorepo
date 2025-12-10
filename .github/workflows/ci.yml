@@ -9,8 +9,8 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - Debug
-          - Release
+          - rel
+          - dbg
         linux_image:
           - arm64v8/debian:trixie
           - debian:trixie
@@ -41,17 +41,15 @@ jobs:
         with: {name: PATH, value: "$PATH:$VCPKG_ROOT"}
       - name: generate cmake build files
         run: |
-          mkdir out
-          cd out
-          cmake ../build/cmake
+          cmake build/cmake --preset native
       - name: build
         run: |
-          cd out
-          cmake --build . --parallel --config ${{ matrix.config }}
+          cd build/cmake
+          cmake --build --preset ${{ matrix.config }}
       - name: test
         run: |
-          cd out
-          cmake --build . --config ${{ matrix.config }} --target test
+          cd build/cmake
+          cmake --build --preset ${{ matrix.config }} --target test
 ##### macosx #####
   macosx:
     runs-on: macos-latest
@@ -89,17 +87,15 @@ jobs:
       run: brew install cmake
     - name: generate cmake build files
       run: |
-        mkdir out
-        cd out
-        cmake ../build/cmake
+        cmake build/cmake --preset native
     - name: build
       run: |
-        cd out
-        cmake --build . --parallel --config ${{ matrix.config }}
+        cd build/cmake
+        cmake --build --preset ${{ matrix.config }}
     - name: test
       run: |
-        cd out
-        cmake --build . --config ${{ matrix.config }} --target test
+        cd build/cmake
+        cmake --build --preset ${{ matrix.config }} --target test
 ##### windows #####
   windows:
     runs-on: windows-latest
