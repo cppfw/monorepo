@@ -137,8 +137,8 @@ jobs:
         cmake --build . --parallel --config ${{ matrix.config }}
     - name: test
       run: |
-          cd out
-          cmake --build . --config ${{ matrix.config }} --target test
+        cd out
+        cmake --build . --config ${{ matrix.config }} --target test
 ##### ios #####
   ios:
     runs-on: macos-latest

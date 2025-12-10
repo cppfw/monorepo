@@ -1,0 +1,55 @@
+{
+  "version": 10,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 23,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "$comment": [
+        "base preset"
+      ],
+      "hidden": true,
+      "name": "base",
+      "description": "Base preset to be inherited by all presets",
+      "binaryDir": "${sourceDir}/../../out/${presetName}/"
+    },
+    {
+      "name": "native",
+      "inherits": "base",
+      "description": "host platform native config, not cross-building"
+    }
+  ],
+  "buildPresets": [
+    {
+      "$comment": [
+        "base preset"
+      ],
+      "hidden": true,
+      "name": "base",
+      "configurePreset": "native",
+      "jobs": 0
+    },
+    {
+      "$comment": [
+        "native-base preset"
+      ],
+      "hidden": true,
+      "name": "native",
+      "inherits": "base"
+    },
+    {
+      "name": "rel",
+      "description": "native release build",
+      "inherits": "native",
+      "configuration": "Release"
+    },
+    {
+      "name": "dbg",
+      "description": "native debug build",
+      "inherits": "native",
+      "configuration": "Debug"
+    }
+  ]
+}
