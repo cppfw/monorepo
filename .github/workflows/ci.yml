@@ -106,8 +106,8 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - Debug
-          - Release
+          - rel
+          - dbg
         arch:
           - Win32
           - x64
@@ -124,17 +124,15 @@ jobs:
       with: {name: VCPKG_ROOT, value: "C:/vcpkg/"}
     - name: generate cmake build files
       run: |
-        mkdir out
-        cd out
-        cmake -A ${{ matrix.arch }} ../build/cmake
+        cmake build/cmake --preset native -A ${{ matrix.arch }}
     - name: build
       run: |
-        cd out
-        cmake --build . --parallel --config ${{ matrix.config }}
+        cd build/cmake
+        cmake --build --preset ${{ matrix.config }}
     - name: test
       run: |
-        cd out
-        cmake --build . --config ${{ matrix.config }} --target test
+        cd build/cmake
+        cmake --build --preset ${{ matrix.config }} --target test
 ##### ios #####
   ios:
     runs-on: macos-latest
