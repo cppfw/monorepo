@@ -55,6 +55,7 @@
       "hidden": true,
       "name": "ios",
       "inherits": "base",
+      "configurePreset": "ios",
       "nativeToolOptions": [
         "-sdk iphonesimulator",
         "-arch arm64"
@@ -74,13 +75,13 @@
     },
     {
       "name": "ios-rel",
-      "description": "native release build",
+      "description": "ios release build",
       "inherits": "ios",
       "configuration": "Release"
     },
     {
       "name": "ios-dbg",
-      "description": "native debug build",
+      "description": "ios debug build",
       "inherits": "ios",
       "configuration": "Debug"
     }
