@@ -57,8 +57,8 @@
       "inherits": "base",
       "configurePreset": "ios",
       "nativeToolOptions": [
-        "-sdk iphonesimulator",
-        "-arch arm64"
+        "-sdk", "iphonesimulator",
+        "-arch", "arm64"
       ]
     },
     {
