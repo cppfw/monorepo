@@ -19,6 +19,15 @@
       "name": "native",
       "inherits": "base",
       "description": "host platform native config, not cross-building"
+    },
+    {
+      "name": "ios",
+      "inherits": "base",
+      "description": "cross-building on macos for ios",
+      "generator": "Xcode",
+      "cacheVariables": {
+        "CMAKE_SYSTEM_NAME": "iOS"
+      }
     }
   ],
   "buildPresets": [
@@ -28,7 +37,6 @@
       ],
       "hidden": true,
       "name": "base",
-      "configurePreset": "native",
       "jobs": 0
     },
     {
@@ -37,7 +45,20 @@
       ],
       "hidden": true,
       "name": "native",
-      "inherits": "base"
+      "inherits": "base",
+      "configurePreset": "native"
+    },
+    {
+      "$comment": [
+        "ios-base preset"
+      ],
+      "hidden": true,
+      "name": "ios",
+      "inherits": "base",
+      "nativeToolOptions": [
+        "-sdk iphonesimulator",
+        "-arch arm64"
+      ]
     },
     {
       "name": "rel",
@@ -49,6 +70,18 @@
       "name": "dbg",
       "description": "native debug build",
       "inherits": "native",
+      "configuration": "Debug"
+    },
+    {
+      "name": "ios-rel",
+      "description": "native release build",
+      "inherits": "ios",
+      "configuration": "Release"
+    },
+    {
+      "name": "ios-dbg",
+      "description": "native debug build",
+      "inherits": "ios",
       "configuration": "Debug"
     }
   ]

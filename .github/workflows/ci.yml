@@ -140,8 +140,8 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - Debug
-          - Release
+          - rel
+          - dbg
     steps:
     - name: workaround python2 and python3 issue when upgrading python
       run : |
@@ -170,14 +170,12 @@ jobs:
       run: brew install cmake
     - name: generate cmake build files
       run: |
-        mkdir out
-        cd out
-        cmake -G Xcode -DCMAKE_SYSTEM_NAME=iOS ../build/cmake
+        cmake build/cmake --preset ios
     - name: build
       run: |
-        cd out
-        cmake --build . --parallel --config ${{ matrix.config }} -- -sdk iphonesimulator -arch arm64
+        cd build/cmake
+        cmake --build --preset ios-${{ matrix.config }}
     # - name: test
     #   run: |
-    #     cd out
-    #     cmake --build . --parallel --config ${{ matrix.config }} --target test -- -sdk iphonesimulator -arch arm64
+    #     cd build/cmake
+    #     cmake --build --preset ios-${{ matrix.config }} --target test
