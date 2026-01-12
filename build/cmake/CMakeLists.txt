@@ -18,7 +18,8 @@ endif()
 set(CMAKE_TOOLCHAIN_FILE ${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake)
 
 # In case of ios we always build for simulator for now.
-# Need to do this check before project() declaration, so use CMAKE_SYSTEM_NAME instead of IOS variable.
+# Need to do this check before project() declaration, so use CMAKE_SYSTEM_NAME instead of IOS variable,
+# because the IOS variable is set only after the first project() declaration.
 if(CMAKE_SYSTEM_NAME STREQUAL iOS)
     # In order to install ios _simulator_ vcpkg packages we need to set the vcpkg target triplet.
     set(VCPKG_TARGET_TRIPLET arm64-ios-simulator)
