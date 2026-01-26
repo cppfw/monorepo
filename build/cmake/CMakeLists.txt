@@ -78,6 +78,7 @@ add_subdir(urlmodel)
 add_subdir(httpmodel)
 add_subdir(tcpserver)
 add_subdir(pautina)
+add_subdir(httpclient)
 
 set(apps_dir "${CMAKE_CURRENT_SOURCE_DIR}/../../apps")
 file(

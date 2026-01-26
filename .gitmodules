@@ -113,3 +113,8 @@
 [submodule "repos/pautina"]
 	path = repos/pautina
 	url = ../pautina
+	branch = latest
+[submodule "repos/httpclient"]
+	path = repos/httpclient
+	url = ../httpclient
+	branch = latest
