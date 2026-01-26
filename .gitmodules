@@ -106,3 +106,7 @@
 	path = repos/httpmodel
 	url = ../httpmodel
 	branch = latest
+[submodule "repos/tcpserver"]
+	path = repos/tcpserver
+	url = ../tcpserver
+	branch = latest
