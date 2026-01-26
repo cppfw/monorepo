@@ -94,3 +94,7 @@
 	path = repos/aumiks
 	url = ../aumiks
 	branch = latest
+[submodule "repos/setka"]
+	path = repos/setka
+	url = ../setka
+	branch = latest
