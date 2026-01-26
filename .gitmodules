@@ -110,3 +110,6 @@
 	path = repos/tcpserver
 	url = ../tcpserver
 	branch = latest
+[submodule "repos/pautina"]
+	path = repos/pautina
+	url = ../pautina
