@@ -71,6 +71,8 @@ add_subdir(ruis-render-null)
 add_subdir(ruis-render-opengl)
 add_subdir(ruis-render-opengles)
 add_subdir(ruisapp)
+add_subdir(audout)
+add_subdir(aumiks)
 
 set(apps_dir "${CMAKE_CURRENT_SOURCE_DIR}/../../apps")
 file(

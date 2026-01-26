@@ -86,3 +86,11 @@
 	path = repos/fsif
 	url = ../fsif
 	branch = latest
+[submodule "repos/audout"]
+	path = repos/audout
+	url = ../audout
+	branch = latest
+[submodule "repos/aumiks"]
+	path = repos/aumiks
+	url = ../aumiks
+	branch = latest
