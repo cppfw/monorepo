@@ -75,6 +75,7 @@ add_subdir(audout)
 add_subdir(aumiks)
 add_subdir(setka)
 add_subdir(urlmodel)
+add_subdir(httpmodel)
 
 set(apps_dir "${CMAKE_CURRENT_SOURCE_DIR}/../../apps")
 file(

@@ -102,4 +102,7 @@
 	path = repos/urlmodel
 	url = ../urlmodel
 	branch = latest
-
+[submodule "repos/httpmodel"]
+	path = repos/httpmodel
+	url = ../httpmodel
+	branch = latest
