@@ -100,7 +100,7 @@
       ],
       "hidden": false,
       "name": "ios-dbg",
-      "inherits": "base",
+      "inherits": "ios",
       "configurePreset": "ios-dbg",
       "configuration": "Debug"
     },
@@ -110,7 +110,7 @@
       ],
       "hidden": false,
       "name": "ios-rel",
-      "inherits": "base",
+      "inherits": "ios",
       "configurePreset": "ios-rel",
       "configuration": "Release"
     }
