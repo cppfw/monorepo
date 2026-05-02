@@ -1,120 +1,120 @@
 [submodule "repos/utki"]
 	path = repos/utki
 	url = ../utki
-	branch = latest
+	branch = main
 [submodule "repos/myci"]
 	path = repos/myci
 	url = ../myci
-	branch = latest
+	branch = main
 [submodule "repos/opros"]
 	path = repos/opros
 	url = ../opros
-	branch = latest
+	branch = main
 [submodule "repos/nitki"]
 	path = repos/nitki
 	url = ../nitki
-	branch = latest
+	branch = main
 [submodule "repos/clargs"]
 	path = repos/clargs
 	url = ../clargs
-	branch = latest
+	branch = main
 [submodule "repos/tst"]
 	path = repos/tst
 	url = ../tst
-	branch = latest
+	branch = main
 [submodule "repos/r4"]
 	path = repos/r4
 	url = ../r4
-	branch = latest
+	branch = main
 [submodule "repos/ruis"]
 	path = repos/ruis
 	url = ../ruis
-	branch = latest
+	branch = main
 [submodule "repos/ruisapp"]
 	path = repos/ruisapp
 	url = ../ruisapp
-	branch = latest
+	branch = main
 [submodule "repos/ruis-render-null"]
 	path = repos/ruis-render-null
 	url = ../ruis-render-null
-	branch = latest
+	branch = main
 [submodule "repos/ruis-render-opengl"]
 	path = repos/ruis-render-opengl
 	url = ../ruis-render-opengl
-	branch = latest
+	branch = main
 [submodule "repos/ruis-render-opengles"]
 	path = repos/ruis-render-opengles
 	url = ../ruis-render-opengles
-	branch = latest
+	branch = main
 [submodule "repos/cssom"]
 	path = repos/cssom
 	url = ../cssom
-	branch = latest
+	branch = main
 [submodule "repos/mikroxml"]
 	path = repos/mikroxml
 	url = ../mikroxml
-	branch = latest
+	branch = main
 [submodule "repos/svgdom"]
 	path = repos/svgdom
 	url = ../svgdom
-	branch = latest
+	branch = main
 [submodule "repos/svgren"]
 	path = repos/svgren
 	url = ../svgren
-	branch = latest
+	branch = main
 [submodule "repos/veg"]
 	path = repos/veg
 	url = ../veg
-	branch = latest
+	branch = main
 [submodule "repos/agg"]
 	path = repos/agg
 	url = ../agg
-	branch = latest
+	branch = main
 [submodule "repos/rasterimage"]
 	path = repos/rasterimage
 	url = ../rasterimage
-	branch = latest
+	branch = main
 [submodule "repos/jsondom"]
 	path = repos/jsondom
 	url = ../jsondom
-	branch = latest
+	branch = main
 [submodule "repos/tml"]
 	path = repos/tml
 	url = ../tml
-	branch = latest
+	branch = main
 [submodule "repos/fsif"]
 	path = repos/fsif
 	url = ../fsif
-	branch = latest
+	branch = main
 [submodule "repos/audout"]
 	path = repos/audout
 	url = ../audout
-	branch = latest
+	branch = main
 [submodule "repos/aumiks"]
 	path = repos/aumiks
 	url = ../aumiks
-	branch = latest
+	branch = main
 [submodule "repos/setka"]
 	path = repos/setka
 	url = ../setka
-	branch = latest
+	branch = main
 [submodule "repos/urlmodel"]
 	path = repos/urlmodel
 	url = ../urlmodel
-	branch = latest
+	branch = main
 [submodule "repos/httpmodel"]
 	path = repos/httpmodel
 	url = ../httpmodel
-	branch = latest
+	branch = main
 [submodule "repos/tcpserver"]
 	path = repos/tcpserver
 	url = ../tcpserver
-	branch = latest
+	branch = main
 [submodule "repos/pautina"]
 	path = repos/pautina
 	url = ../pautina
-	branch = latest
+	branch = main
 [submodule "repos/httpclient"]
 	path = repos/httpclient
 	url = ../httpclient
-	branch = latest
+	branch = main
