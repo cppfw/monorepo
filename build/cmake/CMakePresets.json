@@ -16,17 +16,39 @@
       "binaryDir": "${sourceDir}/../../out/${presetName}/"
     },
     {
-      "name": "native",
+      "name": "rel",
       "inherits": "base",
-      "description": "host platform native config, not cross-building"
+      "description": "host platform native config, not cross-building, release build",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
     },
     {
-      "name": "ios",
+      "name": "dbg",
       "inherits": "base",
-      "description": "cross-building on macos for ios",
+      "description": "host platform native config, not cross-building, debug build",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "ios-dbg",
+      "inherits": "base",
+      "description": "cross-building on macos for ios, debug build",
       "generator": "Xcode",
       "cacheVariables": {
-        "CMAKE_SYSTEM_NAME": "iOS"
+        "CMAKE_SYSTEM_NAME": "iOS",
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "ios-rel",
+      "inherits": "base",
+      "description": "cross-building on macos for ios, release build",
+      "generator": "Xcode",
+      "cacheVariables": {
+        "CMAKE_SYSTEM_NAME": "iOS",
+        "CMAKE_BUILD_TYPE": "Release"
       }
     }
   ],
@@ -41,12 +63,23 @@
     },
     {
       "$comment": [
-        "native-base preset"
+        "native debug preset"
       ],
-      "hidden": true,
-      "name": "native",
+      "hidden": false,
+      "name": "dbg",
       "inherits": "base",
-      "configurePreset": "native"
+      "configurePreset": "dbg",
+      "configuration": "Debug"
+    },
+    {
+      "$comment": [
+        "native release preset"
+      ],
+      "hidden": false,
+      "name": "rel",
+      "inherits": "base",
+      "configurePreset": "rel",
+      "configuration": "Release"
     },
     {
       "$comment": [
@@ -62,28 +95,24 @@
       ]
     },
     {
-      "name": "rel",
-      "description": "native release build",
-      "inherits": "native",
-      "configuration": "Release"
-    },
-    {
-      "name": "dbg",
-      "description": "native debug build",
-      "inherits": "native",
-      "configuration": "Debug"
-    },
-    {
-      "name": "ios-rel",
-      "description": "ios release build",
-      "inherits": "ios",
-      "configuration": "Release"
-    },
-    {
+      "$comment": [
+        "ios debug preset"
+      ],
+      "hidden": false,
       "name": "ios-dbg",
-      "description": "ios debug build",
-      "inherits": "ios",
+      "inherits": "base",
+      "configurePreset": "ios-dbg",
       "configuration": "Debug"
+    },
+    {
+      "$comment": [
+        "ios release preset"
+      ],
+      "hidden": false,
+      "name": "ios-rel",
+      "inherits": "base",
+      "configurePreset": "ios-rel",
+      "configuration": "Release"
     }
   ]
 }
