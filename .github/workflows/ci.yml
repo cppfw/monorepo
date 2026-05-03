@@ -3,24 +3,40 @@ on:
   push: {branches-ignore: [latest], tags: ['*']}
   pull_request:
 jobs:
+  linux-setup-swap:
+    strategy:
+      matrix:
+        runner:
+          - ubuntu-latest
+          - ubuntu-latest-arm
+        # linux_image:
+        #   - arm64v8/debian:trixie
+        #   - debian:trixie
+    # runs-on: ${{ (startsWith(matrix.linux_image, 'arm') && 'ubuntu-24.04-arm') || 'ubuntu-latest' }}
+    runs-on: ${{ matrix.runner }}
+    outputs:
+      runner: ${{ matrix.runner }}
+    steps:
+      - name: increase swap space
+        run: |
+          sudo swapoff --all
+          sudo fallocate -l 32G /swapfile
+          sudo chmod 600 /swapfile
+          sudo mkswap /swapfile
+          sudo swapon /swapfile
 ##### deb linux #####
   deb:
+    needs: linux-setup-swap
     strategy:
       fail-fast: false
       matrix:
         config:
           - rel
           - dbg
-        linux_image:
-          - arm64v8/debian:trixie
-          - debian:trixie
-    runs-on: ${{ (startsWith(matrix.linux_image, 'arm') && 'ubuntu-24.04-arm') || 'ubuntu-latest' }}
+    runs-on: ${{ needs.linux-setup-swap.outputs.runner }}
     container:
-      image: ${{ matrix.linux_image }}
-      # need priveleged mode to be able to setup swap space, otherwise we get "fallocate failed: Operation not permitted" error
-      options: --privileged
-      user: root
-    name: linux - ${{ matrix.linux_image }} | ${{ matrix.config }}
+      image: ${{ needs.linux-setup-swap.outputs.runner == 'ubuntu-latest-arm' && 'arm64v8/debian:trixie' || 'debian:trixie' }}
+    name: linux - ${{ needs.linux-setup-swap.outputs.runner }} | ${{ matrix.config }}
     steps:
       - name: install build tools
         run: |
@@ -28,14 +44,6 @@ jobs:
           apt --quiet install --yes build-essential cmake pkg-config git curl zip unzip tar procps
       - name: check swap size
         run: free -h
-      - name: increase swap space
-        run: |
-          swapoff --all
-          fallocate -l 32G /swapfile
-          chmod 600 /swapfile
-          mkswap /swapfile
-          swapon /swapfile
-          free -h
       - name: install build deps
         run: |
           apt --quiet install --yes libxmu-dev libxi-dev libgl-dev libgles-dev libgtk-4-dev libpulse-dev
