@@ -22,17 +22,19 @@ jobs:
     name: linux - ${{ matrix.linux_image }} | ${{ matrix.config }}
     steps:
       # when building the monorepo we hit the memory limit, so need to setup a swap space
-      - name: setup swap Space
-        run: |
-          # fallocate -l 32G /swapfile
-          # chmod 600 /swapfile
-          # mkswap /swapfile
-          # swapon /swapfile
-          free -h
+      # - name: setup swap Space
+      #   run: |
+      #     fallocate -l 32G /swapfile
+      #     chmod 600 /swapfile
+      #     mkswap /swapfile
+      #     swapon /swapfile
+      #     free -h
       - name: install build tools
         run: |
           apt --quiet update --yes
-          apt --quiet install --yes build-essential cmake pkg-config git curl zip unzip tar
+          apt --quiet install --yes build-essential cmake pkg-config git curl zip unzip tar procps
+      - name: check swap size
+        run: free -h
       - name: install build deps
         run: |
           apt --quiet install --yes libxmu-dev libxi-dev libgl-dev libgles-dev libgtk-4-dev libpulse-dev
