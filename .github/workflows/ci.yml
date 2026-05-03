@@ -15,7 +15,9 @@ jobs:
           - arm64v8/debian:trixie
           - debian:trixie
     runs-on: ${{ (startsWith(matrix.linux_image, 'arm') && 'ubuntu-24.04-arm') || 'ubuntu-latest' }}
-    container: ${{ matrix.linux_image }}
+    container:
+      image: ${{ matrix.linux_image }}
+      options: --shm-size=2g
     name: linux - ${{ matrix.linux_image }} | ${{ matrix.config }}
     steps:
       - name: install build tools
