@@ -24,10 +24,10 @@ jobs:
       # when building the monorepo we hit the memory limit, so need to setup a swap space
       - name: setup swap Space
         run: |
-          fallocate -l 32G /swapfile
-          chmod 600 /swapfile
-          mkswap /swapfile
-          swapon /swapfile
+          # fallocate -l 32G /swapfile
+          # chmod 600 /swapfile
+          # mkswap /swapfile
+          # swapon /swapfile
           free -h
       - name: install build tools
         run: |
