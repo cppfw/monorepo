@@ -8,7 +8,7 @@ jobs:
       matrix:
         runner:
           - ubuntu-latest
-          - ubuntu-latest-arm
+          - ubuntu-24.04-arm
         # linux_image:
         #   - arm64v8/debian:trixie
         #   - debian:trixie
@@ -33,9 +33,12 @@ jobs:
         config:
           - rel
           - dbg
+        runner:
+          - ubuntu-latest
+          - ubuntu-24.04-arm
     runs-on: ${{ needs.linux-setup-swap.outputs.runner }}
     container:
-      image: ${{ needs.linux-setup-swap.outputs.runner == 'ubuntu-latest-arm' && 'arm64v8/debian:trixie' || 'debian:trixie' }}
+      image: ${{ needs.linux-setup-swap.outputs.runner == 'ubuntu-latest' && 'debian:trixie' || 'arm64v8/debian:trixie' }}
     name: linux - ${{ needs.linux-setup-swap.outputs.runner }} | ${{ matrix.config }}
     steps:
       - name: install build tools
