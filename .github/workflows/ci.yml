@@ -3,43 +3,21 @@ on:
   push: {branches-ignore: [latest], tags: ['*']}
   pull_request:
 jobs:
-  linux-setup-swap:
-    strategy:
-      matrix:
-        runner:
-          - ubuntu-latest
-          - ubuntu-24.04-arm
-        # linux_image:
-        #   - arm64v8/debian:trixie
-        #   - debian:trixie
-    # runs-on: ${{ (startsWith(matrix.linux_image, 'arm') && 'ubuntu-24.04-arm') || 'ubuntu-latest' }}
-    runs-on: ${{ matrix.runner }}
-    outputs:
-      runner: ${{ matrix.runner }}
-    steps:
-      - name: increase swap space
-        run: |
-          sudo swapoff --all
-          sudo fallocate -l 32G /swapfile
-          sudo chmod 600 /swapfile
-          sudo mkswap /swapfile
-          sudo swapon /swapfile
 ##### deb linux #####
   deb:
-    needs: linux-setup-swap
     strategy:
       fail-fast: false
       matrix:
         config:
           - rel
           - dbg
-        runner:
-          - ubuntu-latest
-          - ubuntu-24.04-arm
-    runs-on: ${{ needs.linux-setup-swap.outputs.runner }}
+        linux_image:
+          - debian:trixie
+          - arm64v8/debian:trixie
+    runs-on: ${{ startsWith(matrix.linux_image, 'arm') && 'ubuntu-24.04-arm' || 'ubuntu-latest' }}
     container:
-      image: ${{ needs.linux-setup-swap.outputs.runner == 'ubuntu-latest' && 'debian:trixie' || 'arm64v8/debian:trixie' }}
-    name: linux - ${{ needs.linux-setup-swap.outputs.runner }} | ${{ matrix.config }}
+      image: ${{ matrix.linux_image }}
+    name: linux - ${{ matrix.linux_image }} | ${{ matrix.config }}
     steps:
       - name: install build tools
         run: |
