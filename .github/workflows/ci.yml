@@ -19,6 +19,7 @@ jobs:
       image: ${{ matrix.linux_image }}
       # need priveleged mode to be able to setup swap space, otherwise we get "fallocate failed: Operation not permitted" error
       options: --privileged
+      user: root
     name: linux - ${{ matrix.linux_image }} | ${{ matrix.config }}
     steps:
       - name: install build tools
