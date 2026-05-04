@@ -31,6 +31,7 @@ jobs:
           sudo mkswap /swapfile
           sudo swapon /swapfile
           free -h
+          df -h
       - name: install build deps
         run: |
           sudo apt --quiet install --yes libxmu-dev libxi-dev libgl-dev libgles-dev libgtk-4-dev libpulse-dev
