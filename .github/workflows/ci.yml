@@ -3,21 +3,19 @@ on:
   push: {branches-ignore: [latest], tags: ['*']}
   pull_request:
 jobs:
-##### deb linux #####
-  deb:
+##### linux #####
+  linux:
     strategy:
       fail-fast: false
       matrix:
         config:
           - rel
           - dbg
-        linux_image:
-          - debian:trixie
-          - arm64v8/debian:trixie
-    runs-on: ${{ startsWith(matrix.linux_image, 'arm') && 'ubuntu-24.04-arm' || 'ubuntu-latest' }}
-    container:
-      image: ${{ matrix.linux_image }}
-    name: linux - ${{ matrix.linux_image }} | ${{ matrix.config }}
+        runner:
+          - ubuntu-latest
+          - ubuntu-24.04-arm
+    runs-on: ${{ matrix.runner }}
+    name: linux - ${{ matrix.runner }} | ${{ matrix.config }}
     steps:
       - name: install build tools
         run: |
