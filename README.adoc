@@ -7,6 +7,11 @@ Repositories of **cppfw** libraries are added as submodules under the `repos/` d
 === Prerequisites
 
 - link:https://vcpkg.io[VCPKG] installed and `VCPKG_ROOT` environment variable set accordingly
+- All submodules fetched (non-recursively)
++
+```
+git submodule update --init
+```
 - **Linux:** `pkg-config`, `zip`, `libgl1-mesa-dev`, `libgtk-3-dev` installed
 +
 ```
