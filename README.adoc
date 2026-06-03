@@ -1,11 +1,6 @@
 = monorepo for cppfw libraries
 
-**cppfw** libraries repositories are added as submodules under the `repos/` directory.
-The submodules are configured to `latest` remote branch. So updating the submodules with:
-```
-git submodule update --remote --init
-```
-Will always sync to latest release versions of the libraries.
+Repositories of **cppfw** libraries are added as submodules under the `repos/` directory.
 
 == Building with CMake
 
@@ -21,15 +16,36 @@ sudo apt install pkg-config zip libgl1-mesa-dev libgtk-3-dev
 === Building
 
 ```
-mkdir out
-cd out
-cmake ../build/cmake
-cmake --build . --parallel
+cd build/cmake
+cmake . --preset rel
+cmake --build --preset rel
 ```
 
-Test applications binaries will be put to `out/exe` directory.
+Test applications binaries will be put to `out/rel/exe` directory.
+
+Also `dbg` preset is available for debug builds. Replace `rel` with `dbg` in the above commands to build debug version.
+
+=== Running apps
+
+For example, if we want to run `ruis-app2` test application, we can do it like this:
+
+```
+cd build/cmake
+cmake --build --preset rel --target run-ruis-app2-app-opengl
+```
+
+To list all cmake targets, one can use:
+```
+cmake --build --preset rel --target help
+```
 
 === Building on Windows
+
+Basically the same general steps are applicable for Windows.
+
+To simplify the process, some command scripts are provided to automate the process of fetching submodules, installing vcpkg and generating Microsoft Visual Studio project.
+
+**TODO: update these instructions, might be obsolete**
 
 On Windows one can use the provided command scripts:
 
