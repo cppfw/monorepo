@@ -1,6 +1,6 @@
 {
 	"cmake.sourceDirectory": "${workspaceFolder}/build/cmake",
-	"cmake.useCMakePresets": "always",
+	"cmake.useCMakePresets": "auto",
 	"cmake.ignoreKitEnv": true,
 	"cmake.configureOnOpen": true,
 	"C_Cpp.errorSquiggles": "disabled"

@@ -88,7 +88,6 @@
       "hidden": true,
       "name": "ios",
       "inherits": "base",
-      "configurePreset": "ios",
       "nativeToolOptions": [
         "-sdk", "iphonesimulator",
         "-arch", "arm64"
