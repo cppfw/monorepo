@@ -4,8 +4,8 @@
 
 namespace hello_world {
 
-const ruisapp::application_factory app_fac([](auto executable, auto args) {
-	return make_application(executable, args);
+const ruisapp::application_factory app_fac([](auto, auto) {
+	return std::make_unique<application>();
 });
 
 } // namespace hello_world

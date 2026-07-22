@@ -19,8 +19,5 @@ myci_declare_application(${PROJECT_NAME}-opengles
     INCLUDE_DIRECTORIES
         ../../src
     DEPENDENCIES
-        clargs
         ruisapp::ruisapp-opengles
-    #RUN_ARGUMENTS
-        #--window
 )

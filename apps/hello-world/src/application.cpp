@@ -3,26 +3,79 @@
 #include <ruis/standard_widgets.hpp>
 #include <ruis/widget/button/push_button.hpp>
 #include <ruis/widget/label/text.hpp>
-#include <ruis/widget/group/overlay.hpp>
+#include <ruis/widget/container.hpp>
 #include <ruis/widget/proxy/key_proxy.hpp>
-
-#include <clargs/parser.hpp>
-
-#include "gui.hpp"
+#include <ruis/util/length.hpp>
 
 using namespace std::string_literals;
 using namespace std::string_view_literals;
+using namespace ruis::length_literals;
+
+namespace {
+
+utki::shared_ref<ruis::widget> make_root_widget(utki::shared_ref<ruis::context> c)
+{
+	// clang-format off
+	auto button = ruis::make::push_button(c,
+		{
+			.layout_params = {
+				.dims = {200_pp, 60_pp}
+			}
+		},
+		{
+			ruis::make::text(c, {}, U"Exit"s)
+		}
+	);
+	// clang-format on
+
+	button.get().click_handler = [](ruis::push_button&) {
+		ruisapp::inst().quit();
+	};
+
+	// clang-format off
+	return ruis::make::pile(c,
+		{
+			.layout_params = {
+				.align = {ruis::align::center, ruis::align::center}
+			}
+		},
+		{
+			ruis::make::column(c,
+				{
+					.layout_params = {
+						.dims = {ruis::dim::min, ruis::dim::min},
+						.align = {ruis::align::center, ruis::align::center}
+					}
+				},
+				{
+					ruis::make::text(c,
+						{
+							.layout_params = {
+								.align = {ruis::align::center, ruis::align::center}
+							}
+						},
+						U"Hello world!"s
+					),
+					std::move(button)
+				}
+			)
+		}
+	);
+	// clang-format on
+}
+
+} // namespace
 
 namespace hello_world {
 
-application::application(bool windowed) :
+application::application() :
 	ruisapp::application({
 		.name = "hello-world"s
 	})
 {
 	auto& win = this->make_window({
 		.dims = {800, 600},
-		.fullscreen = !windowed
+		.fullscreen = false
 	});
 
 	win.gui.context.get().window().close_handler = [this]() {
@@ -36,26 +89,6 @@ application::application(bool windowed) :
 
 	auto root = make_root_widget(win.gui.context);
 	win.gui.set_root(root);
-}
-
-std::unique_ptr<application> make_application(
-	std::string_view executable, //
-	utki::span<std::string_view> args
-)
-{
-#if CFG_OS_NAME == CFG_OS_NAME_EMSCRIPTEN
-	bool windowed = true;
-#else
-	bool windowed = false;
-
-	clargs::parser p;
-	p.add("window", "run in window mode", [&]() {
-		windowed = true;
-	});
-	p.parse(args);
-#endif
-
-	return std::make_unique<application>(windowed);
 }
 
 } // namespace hello_world
