@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.30)
 
-project(hello_world)
+project(hello-world)
 
 # !!! find_package must go after project() declaration !!!
 # Otherwise VCPKG does not set the CMAKE_PREFIX_PATH to find packages.

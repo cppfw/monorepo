@@ -1,7 +1,1 @@
-This is a monorepo repository that contains:
-- /repos/ruis: a C++ cross-platform GUI library containing the core GUI framework and UI components
-- /repos/ruisapp: the platform-specific adapters that allow ruis core to stay platform agnostic and provide a unified API for different platforms
-- /repos/ruis-render-*: renderers for corresponding 3D rendering APIs (e.g. OpenGL and OpenGL ES)
-- /repos/*: other dependencies of ruis
-
-`ruis` allows creating cross-platform GUI applications purely in C++.
+Read the instructions from /AGENTS.md file.
