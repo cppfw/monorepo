@@ -4,7 +4,6 @@
 #include <ruis/widget/button/push_button.hpp>
 #include <ruis/widget/label/text.hpp>
 #include <ruis/widget/container.hpp>
-#include <ruis/widget/group/overlay.hpp>
 #include <ruis/widget/proxy/key_proxy.hpp>
 #include <ruis/util/length.hpp>
 
@@ -36,25 +35,14 @@ utki::shared_ref<ruis::widget> make_root_widget(utki::shared_ref<ruis::context> 
 	};
 
 	// clang-format off
-	return m::overlay(c,
+	return m::pile(c,
 		{
 			.layout_params = {
-				.dims = {ruis::dim::fill, ruis::dim::fill},
 				.align = {ruis::align::center, ruis::align::center}
 			}
 		},
 		{
-			m::column(c,
-				{
-					.layout_params = {
-						.dims = {ruis::dim::min, ruis::dim::min},
-						.align = {ruis::align::center, ruis::align::center}
-					}
-				},
-				{
-					std::move(button)
-				}
-			)
+			std::move(button)
 		}
 	);
 	// clang-format on
