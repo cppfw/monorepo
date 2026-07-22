@@ -13,11 +13,11 @@ myci_add_source_files(srcs
     RECURSIVE
 )
 
-myci_declare_application(${PROJECT_NAME}-opengles
+myci_declare_application(${PROJECT_NAME}-opengl
     SOURCES
         ${srcs}
     INCLUDE_DIRECTORIES
         ../../src
     DEPENDENCIES
-        ruisapp::ruisapp-opengles
+        ruisapp::ruisapp-opengl
 )
