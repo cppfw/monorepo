@@ -24,6 +24,8 @@ endfunction()
 
 if(IOS)
     declare_hello_world_app(opengles)
+elseif(APPLE)
+    declare_hello_world_app(opengl)
 else()
     declare_hello_world_app(opengl)
     declare_hello_world_app(opengles)
