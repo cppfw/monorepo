@@ -13,11 +13,18 @@ myci_add_source_files(srcs
     RECURSIVE
 )
 
-myci_declare_application(${PROJECT_NAME}-opengl
-    SOURCES
-        ${srcs}
-    INCLUDE_DIRECTORIES
-        ../../src
-    DEPENDENCIES
-        ruisapp::ruisapp-opengl
-)
+function(declare_hello_world_app renderer)
+    myci_declare_application(${PROJECT_NAME}-${renderer}
+        SOURCES
+            ${srcs}
+        DEPENDENCIES
+            ruisapp::ruisapp-${renderer}
+    )
+endfunction()
+
+if(IOS)
+    declare_hello_world_app(opengles)
+else()
+    declare_hello_world_app(opengl)
+    declare_hello_world_app(opengles)
+endif()
