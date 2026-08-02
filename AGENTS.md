@@ -13,4 +13,4 @@ This is the monorepo for `cppfw` C++ framework.
 
 - skills are in `.ai/skills`.
 - Build using CMake.
-- Always re-run build and fix errors after edits without asking.
+- After editing code, always rebuild the project automatically and run tests.
