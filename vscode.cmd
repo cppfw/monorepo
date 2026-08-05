@@ -1,11 +1,11 @@
+@echo off
 rem This script launches the vscode with the msvc tools environment set up.
 
-@echo off
 setlocal EnableExtensions DisableDelayedExpansion
 
 title Gagis - Visual Studio Developer Environment
 
-set "PROJECT=C:\work\gagis"
+set "PROJECT=."
 set "LOG=%~dp0launch-vscode.log"
 set "VSWHERE=%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe"
 
