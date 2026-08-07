@@ -12,7 +12,7 @@ When to use
 
 How the skill works
 -------------------
-- Preferred (programmatic): use the `Build_CMakeTools` tool with the desired build targets.
+- Preferred (programmatic): use the VS Code `Build_CMakeTools` tool with the desired build targets.
 - Fallback (manual): run CMake from the configured build directory, for example:
 
   ```bash
@@ -34,7 +34,7 @@ Notes
 Example (agent pseudocode)
 --------------------------
 
-1. Call the `Build_CMakeTools` tool with the relevant target list.
+1. Call the VS Code `Build_CMakeTools` tool with the relevant target list.
 2. If manual invocation is needed, run:
 
 ```bash
