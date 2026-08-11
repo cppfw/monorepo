@@ -2,6 +2,6 @@
 
 Use CMake to build the project.
 
-- Preferred: use the VS Code `Build_CMakeTools` tool.
-- Fallback: run `cmake --build <build-directory>` or `cmake --build <build-directory> --target <target-name>`.
+- Preferred: use the VS Code `Build_CMakeTools` tool if running in vscode context.
+- Fallback: run `cmake --build build/cmake` or `cmake --build build/cmake --target <target-name>`.
 - Prefer CMake targets over ad-hoc make commands.
