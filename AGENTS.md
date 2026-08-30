@@ -12,4 +12,7 @@ This is the monorepo for `cppfw` C++ framework.
 
 # instructions
 
-- After editing code, always rebuild the project automatically and run tests.
+- After editing code, always rebuild the project and run tests without asking user for confirmation.
+- Use build skill to build all applications and all libraries
+- Use run_app skill to run applications
+- Use run_tests skill to run tests
