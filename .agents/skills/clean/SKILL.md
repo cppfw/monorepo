@@ -8,5 +8,5 @@ description: Clean the CMake build tree using CMake's clean target. Use when you
 Use CMake to clean the build tree.
 
 - Preferred: use the VS Code `Build_CMakeTools` tool to invoke clean if running in vscode context.
-- Fallback: run `cd build/cmake && cmake --build --preset <preset> --target clean`.
+- Fallback: run `cmake --build out/<preset> --target clean`.
 - Prefer CMake clean over manual deletion of build artifacts.
