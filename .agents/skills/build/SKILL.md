@@ -1,3 +1,8 @@
+---
+name: build
+description: Build the CMake project using CMake build targets. Use when you need to compile the project.
+---
+
 # Build (CMake) — Skill
 
 Use CMake to build the project.
