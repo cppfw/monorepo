@@ -8,5 +8,5 @@ description: Build the CMake project using CMake build targets. Use when you nee
 Use CMake to build the project.
 
 - Preferred: use the VS Code `Build_CMakeTools` tool if running in vscode context.
-- Fallback: run `cmake --build out/<preset>` or `cmake --build out/<preset> --target <target-name>`.
+- Fallback: `cmake --build out/<preset> --target <application-name>`. The target can also be `all`.
 - Prefer CMake targets over ad-hoc make commands.
