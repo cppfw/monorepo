@@ -16,3 +16,4 @@ This is the monorepo for `cppfw` C++ framework.
 - Use build skill to build all applications and all libraries
 - Use run_app skill to run applications
 - Use run_tests skill to run tests
+- Do not correct code formatting of existing code. If you are adding new code, follow the existing formatting style.
