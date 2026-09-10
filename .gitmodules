@@ -118,3 +118,6 @@
 	path = repos/httpclient
 	url = ../httpclient
 	branch = main
+[submodule "tool-configs"]
+	path = tool-configs
+	url = ../tool-configs
