@@ -7,6 +7,8 @@ description: Run an application via its CMake run target. Use when you need to e
 
 Run an application via its CMake target.
 
-- Preferred: use the VS Code `Build_CMakeTools` tool with `buildTargets = ["run-<app-name>"]` if running in vscode context.
-- Fallback: run `cmake --build out/<preset> --target run-<app-name>`.
-- Replace `<app-name>` with the app's canonical CMake target.
+Run:
+
+`cmake --build out/<preset> --target run-<app-name>`
+
+Replace the `<app-name>` with the app's canonical CMake target.
