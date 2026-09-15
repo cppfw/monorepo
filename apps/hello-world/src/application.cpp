@@ -50,7 +50,7 @@ utki::shared_ref<ruis::widget> make_root_widget(const utki::shared_ref<ruis::con
 				{
 					ruis::make::text(c,
 						{
-							.layout_params = {
+							.layout{
 								.align = {ruis::align::center, ruis::align::center}
 							}
 						},
