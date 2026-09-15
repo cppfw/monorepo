@@ -18,7 +18,7 @@ utki::shared_ref<ruis::widget> make_root_widget(const utki::shared_ref<ruis::con
 	// clang-format off
 	auto button = ruis::make::push_button(c,
 		{
-			.layout_params = {
+			.layout = {
 				.dims = {200_pp, 60_pp}
 			}
 		},
