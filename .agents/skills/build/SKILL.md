@@ -12,3 +12,5 @@ Run:
 `cmake --build out/<preset> --target <application-name>`
 
 The target can also be `all`.
+The `CMakeLists.txt` file is usually located in `build/cmake` directory of the project repo.
+Do not use application or library local CMake build files, use the `monorepo`'s `build/cmake/CMakePresets.json` to build everything.
