@@ -121,3 +121,6 @@
 [submodule "tool-configs"]
 	path = tool-configs
 	url = ../tool-configs
+[submodule "apps/ruis_sdl_example"]
+	path = apps/ruis-sdl-example
+	url = ../ruis-sdl-example

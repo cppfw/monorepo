@@ -3,6 +3,7 @@
         "freetype",
         "libjpeg-turbo",
         "libpng",
+        "sdl2",
         {
             "name": "glew",
             "platform": "!ios"
