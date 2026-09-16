@@ -6,6 +6,12 @@
             "type": "cmake",
             "target": "ruis-app1-app-opengl",
             "problemMatcher": []
-        }
+        },
+        {
+            "label": "build calslog-app",
+            "type": "cmake",
+            "target": "calslog-opengl",
+            "problemMatcher": []
+        },
     ]
 }

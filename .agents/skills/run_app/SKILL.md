@@ -9,6 +9,6 @@ Run an application via its CMake target.
 
 Run:
 
-`cmake --build out/<preset> --target run-<app-name>`
+`cmake --build out/<preset> --target run-<app-name> --parallel`
 
 Replace the `<app-name>` with the app's canonical CMake target.

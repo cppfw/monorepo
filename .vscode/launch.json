@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "(gdb) Launch",
+            "name": "(gdb) ruis-app1-opengl",
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/out/dbg/exe/ruis-app1-app-opengl/ruis-app1-app-opengl",
@@ -28,6 +28,30 @@
                 }
             ],
             "preLaunchTask": "build ruis-app1-app"
+        },
+        {
+            "name": "(gdb) calslog-opengl",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/out/dbg/exe/calslog-opengl/calslog-opengl",
+            "args": [ "--res-path=res", "--window" ],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ]
         }
 
     ]

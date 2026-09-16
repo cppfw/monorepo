@@ -9,6 +9,6 @@ Run the CMake `test` target.
 
 Run:
 
-`cmake --build out/<preset> --target test`
+`cmake --build out/<preset> --target test --parallel`
 
 Prefer CMake targets over ad-hoc make commands or runnig binaries directly.

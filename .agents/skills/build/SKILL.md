@@ -9,7 +9,7 @@ Use CMake to build libraries and applications.
 
 Run:
 
-`cmake --build out/<preset> --target <application-name>`
+`cmake --build out/<preset> --target <application-name> --parallel`
 
 The target can also be `all`.
 The `CMakeLists.txt` file is usually located in `build/cmake` directory of the project repo.
