@@ -18,7 +18,7 @@ utki::shared_ref<ruis::widget> make_root_widget(const utki::shared_ref<ruis::con
 	// clang-format off
 	auto button = ruis::make::push_button(c,
 		{
-			.layout = {
+			.layout_params = {
 				.dims = {200_pp, 60_pp}
 			}
 		},
@@ -35,14 +35,14 @@ utki::shared_ref<ruis::widget> make_root_widget(const utki::shared_ref<ruis::con
 	// clang-format off
 	return ruis::make::pile(c,
 		{
-			.layout = {
+			.layout_params = {
 				.align = {ruis::align::center, ruis::align::center}
 			}
 		},
 		{
 			ruis::make::column(c,
 				{
-					.layout = {
+					.layout_params = {
 						.dims = {ruis::dim::min, ruis::dim::min},
 						.align = {ruis::align::center, ruis::align::center}
 					}
@@ -50,7 +50,7 @@ utki::shared_ref<ruis::widget> make_root_widget(const utki::shared_ref<ruis::con
 				{
 					ruis::make::text(c,
 						{
-							.layout{
+							.layout_params{
 								.align = {ruis::align::center, ruis::align::center}
 							}
 						},
