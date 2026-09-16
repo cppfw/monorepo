@@ -35,14 +35,14 @@ utki::shared_ref<ruis::widget> make_root_widget(const utki::shared_ref<ruis::con
 	// clang-format off
 	return ruis::make::pile(c,
 		{
-			.layout_params = {
+			.layout = {
 				.align = {ruis::align::center, ruis::align::center}
 			}
 		},
 		{
 			ruis::make::column(c,
 				{
-					.layout_params = {
+					.layout = {
 						.dims = {ruis::dim::min, ruis::dim::min},
 						.align = {ruis::align::center, ruis::align::center}
 					}
