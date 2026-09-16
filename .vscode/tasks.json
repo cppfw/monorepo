@@ -1,0 +1,11 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build ruis-app1-app",
+            "type": "cmake",
+            "target": "ruis-app1-app-opengl",
+            "problemMatcher": []
+        }
+    ]
+}
