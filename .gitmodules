@@ -121,6 +121,12 @@
 [submodule "tool-configs"]
 	path = tool-configs
 	url = ../tool-configs
+	branch = main
 [submodule "apps/ruis_sdl_example"]
 	path = apps/ruis-sdl-example
 	url = ../ruis-sdl-example
+	branch = main
+[submodule "repos/ruis-render-vulkan"]
+	path = repos/ruis-render-vulkan
+	url = ../ruis-render-vulkan
+	branch = main
