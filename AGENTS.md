@@ -13,7 +13,7 @@ This is the monorepo for `cppfw` C++ framework.
 # instructions
 
 - After editing code, always rebuild the `all` target and run tests without asking user for confirmation.
-- Use build skill to build all applications and all libraries
+- Use build skill to build all applications and all libraries, use `dbg` preset
 - Use run_app skill to run applications
 - Use run_tests skill to run tests
 - Do not correct code formatting of existing code like tabs/sapces etc. If you are adding new code, follow the existing formatting style.
