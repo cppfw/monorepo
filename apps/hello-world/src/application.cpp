@@ -1,11 +1,11 @@
 #include "application.hpp"
 
 #include <ruis/standard_widgets.hpp>
-#include <ruis/widget/button/push_button.hpp>
-#include <ruis/widget/label/text.hpp>
-#include <ruis/widget/container.hpp>
-#include <ruis/widget/proxy/key_proxy.hpp>
 #include <ruis/util/length.hpp>
+#include <ruis/widget/button/push_button.hpp>
+#include <ruis/widget/container.hpp>
+#include <ruis/widget/label/text.hpp>
+#include <ruis/widget/proxy/key_proxy.hpp>
 
 using namespace std::string_literals;
 using namespace std::string_view_literals;
@@ -69,9 +69,7 @@ utki::shared_ref<ruis::widget> make_root_widget(const utki::shared_ref<ruis::con
 namespace hello_world {
 
 application::application() :
-	ruisapp::application({
-		.name = "hello-world"s
-	})
+	ruisapp::application({.name = "hello-world"s})
 {
 	auto& win = this->make_window({
 		.dims = {800, 600},
