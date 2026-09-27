@@ -1,6 +1,6 @@
 #include "application.hpp"
 
-#include <ruis/standard_widgets.hpp>
+#include <ruis/standard_resources.hpp>
 #include <ruis/util/length.hpp>
 #include <ruis/widget/button/push_button.hpp>
 #include <ruis/widget/container.hpp>
@@ -80,7 +80,7 @@ application::application() :
 		this->quit();
 	};
 
-	ruis::init_standard_widgets(
+	ruis::mount_ruis_res_pack(
 		win.gui.context, //
 		this->get_res_file()
 	);
