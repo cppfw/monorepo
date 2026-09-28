@@ -80,11 +80,6 @@ application::application() :
 		this->quit();
 	};
 
-	ruis::mount_ruis_res_pack(
-		win.gui.context, //
-		this->get_res_file()
-	);
-
 	auto root = make_root_widget(win.gui.context);
 	win.gui.set_root(root);
 }
