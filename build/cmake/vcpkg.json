@@ -3,6 +3,7 @@
         "freetype",
         "libjpeg-turbo",
         "libpng",
+        "zlib",
         "sdl2",
         {
             "name": "glew",
