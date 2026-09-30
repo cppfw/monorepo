@@ -155,7 +155,9 @@ jobs:
       with:
         name: windows_${{ matrix.arch }}_${{ matrix.config }}_logs
         path: |
-          vcpkg-installation/buildtrees/
+          vcpkg-installation/buildtrees/**/*.log
+          vcpkg-installation/buildtrees/**/*.txt
+        if-no-files-found: warn
 ##### ios #####
   ios:
     runs-on: macos-latest
