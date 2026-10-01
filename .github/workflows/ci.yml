@@ -169,6 +169,7 @@ jobs:
         path: |
           vcpkg-installation/buildtrees/**/*.log
           vcpkg-installation/buildtrees/**/*.txt
+          !vcpkg-installation/buildtrees/sdl2/src/**
         if-no-files-found: warn
 ##### ios #####
   ios:
