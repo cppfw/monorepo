@@ -163,13 +163,12 @@ jobs:
         cmake --build --preset ${{ matrix.config }} --target test
     - name: upload vcpkg logs to artifacts
       if: always() # even if previous steps fail, this one needs to be run
-      uses: actions/upload-artifact@v6
+      uses: actions/upload-artifact@v7
       with:
         name: windows_${{ matrix.arch }}_${{ matrix.config }}_logs
         path: |
           vcpkg-installation/buildtrees/**/*.log
           vcpkg-installation/buildtrees/**/*.txt
-          !vcpkg-installation/buildtrees/sdl2/src/**
         if-no-files-found: warn
 ##### ios #####
   ios:
