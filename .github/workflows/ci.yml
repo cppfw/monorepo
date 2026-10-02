@@ -166,9 +166,10 @@ jobs:
       uses: actions/upload-artifact@v7
       with:
         name: windows_${{ matrix.arch }}_${{ matrix.config }}_logs
+        # NOTE: upload only log files from first level buildtrees subdirectory to avoid the actions/upload-artifact traversing too dee and issuing a stat() restricted error
         path: |
-          vcpkg-installation/buildtrees/**/*.log
-          vcpkg-installation/buildtrees/**/*.txt
+          vcpkg-installation/buildtrees/*/*.log
+          vcpkg-installation/buildtrees/*/*.txt
         if-no-files-found: warn
 ##### ios #####
   ios:
