@@ -17,3 +17,4 @@ This is the monorepo for `cppfw` C++ framework.
 - Use run_app skill to run applications
 - Use run_tests skill to run tests
 - Do not mind code formatting like tabs/spaces etc. when writing code. Use `format` skill to apply formatting after the code is written.
+- Do not commit or push to git without being explicitly asked.
