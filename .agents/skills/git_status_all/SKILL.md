@@ -14,3 +14,5 @@ Run the `git_status.sh` script from the root of the monorepo:
 It prints:
 - `git status` for the monorepo (mentioning submodules if there is modified content)
 - `git status` for each app in `apps/` directory that has changes.
+
+Note, that submodules can report having new commits, this just means that those repos were committed to, but monorepo has not been updated yet. No action needed.
