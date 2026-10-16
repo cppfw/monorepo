@@ -18,6 +18,7 @@ utki::shared_ref<ruis::widget> make_root_widget(const utki::shared_ref<ruis::con
 	auto button = ruis::make::push_button(c,
 		{
 			.layout_params = {
+				// NOLINTNEXTLINE(cppcoreguidelines-avoid-magic-numbers, "demo button size")
 				.dims = {200_pp, 60_pp}
 			}
 		},
@@ -71,6 +72,7 @@ application::application() :
 	ruisapp::application({.name = "hello-world"s})
 {
 	auto& win = this->make_window({
+		// NOLINTNEXTLINE(cppcoreguidelines-avoid-magic-numbers, "demo window size")
 		.dims = {800, 600},
 		.fullscreen = false
 	});
