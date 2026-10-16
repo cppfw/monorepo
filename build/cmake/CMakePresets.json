@@ -32,6 +32,15 @@
       }
     },
     {
+      "name": "lint",
+      "inherits": "dbg",
+      "description": "debug build with clang-tidy enabled, sources are linted as part of the build",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_CXX_CLANG_TIDY": "clang-tidy;--quiet"
+      }
+    },
+    {
       "name": "ios-dbg",
       "inherits": "base",
       "description": "cross-building on macos for ios, debug build",
@@ -69,6 +78,16 @@
       "name": "dbg",
       "inherits": "base",
       "configurePreset": "dbg",
+      "configuration": "Debug"
+    },
+    {
+      "$comment": [
+        "native lint preset"
+      ],
+      "hidden": false,
+      "name": "lint",
+      "inherits": "base",
+      "configurePreset": "lint",
       "configuration": "Debug"
     },
     {
