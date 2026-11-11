@@ -1,5 +1,5 @@
 ---
-name: vcpkg_baseline
+name: vcpkg-baseline
 description: Update the VCPKG baseline. Use when you need to update the VCPKG baseline to the latest cppfw vcpkg-repo commit.
 ---
 
