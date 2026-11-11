@@ -36,8 +36,15 @@
       "inherits": "dbg",
       "description": "debug build with clang-tidy enabled, sources are linted as part of the build",
       "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Debug",
         "CMAKE_CXX_CLANG_TIDY": "clang-tidy;--quiet"
+      }
+    },
+    {
+      "name": "asan",
+      "inherits": "dbg",
+      "description": "debug build with AddressSanitizer enabled",
+      "cacheVariables": {
+        "MYCI_ASAN": "ON"
       }
     },
     {
@@ -88,6 +95,16 @@
       "name": "lint",
       "inherits": "base",
       "configurePreset": "lint",
+      "configuration": "Debug"
+    },
+    {
+      "$comment": [
+        "native asan preset"
+      ],
+      "hidden": false,
+      "name": "asan",
+      "inherits": "base",
+      "configurePreset": "asan",
       "configuration": "Debug"
     },
     {
