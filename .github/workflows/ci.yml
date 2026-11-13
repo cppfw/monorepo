@@ -166,7 +166,7 @@ jobs:
       uses: actions/upload-artifact@v7
       with:
         name: windows_${{ matrix.arch }}_${{ matrix.config }}_logs
-        # NOTE: upload only log files from first level buildtrees subdirectory to avoid the actions/upload-artifact traversing too dee and issuing a stat() restricted error
+        # NOTE: upload only first level buildtrees subdir logs: on windows actions/upload-artifact fails with a stat() EPERM error when traversing too deep into dependency source trees
         path: |
           vcpkg-installation/buildtrees/*/*.log
           vcpkg-installation/buildtrees/*/*.txt
