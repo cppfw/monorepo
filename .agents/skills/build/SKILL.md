@@ -11,6 +11,6 @@ Run:
 
 `cmake --build out/<preset> --target <application-name> --parallel`
 
-The target can also be `all`.
-The `CMakeLists.txt` file is usually located in `build/cmake` directory of the project repo.
-Do not use application or library local CMake build files, use the `monorepo`'s `build/cmake/CMakePresets.json` to build everything.
+- To build everything, omit the target entirely — the default target is `all` (single-config generators) or `ALL_BUILD` (multi-config generators like Visual Studio), which is equivalent in both cases. Note: `--target all` does not work with multi-config generators, and the `all` name is reserved by CMake and cannot be redefined.
+- The `CMakeLists.txt` file is usually located in `build/cmake` directory of the project repo.
+- Do not use application or library local CMake build files. Use the `monorepo`'s `build/cmake/CMakePresets.json` to build any single app/lib or all.
