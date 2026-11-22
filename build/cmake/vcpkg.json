@@ -14,9 +14,6 @@
             "platform": "windows"
         },
         "curl",
-        {
-            "name": "vulkan",
-            "platform": "osx | ios"
-        }
+        "vulkan"
     ]
 }
