@@ -13,6 +13,10 @@
             "name": "angle",
             "platform": "windows"
         },
-        "curl"
+        "curl",
+        {
+            "name": "vulkan",
+            "platform": "osx | ios"
+        }
     ]
 }
