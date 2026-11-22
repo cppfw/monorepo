@@ -41,6 +41,9 @@ jobs:
             libgles-dev \
             libglu1-mesa-dev \
             libgtk-4-dev \
+            # GTK4 links against the Vulkan loader (pkg-config gtk4 emits -lvulkan);
+            # without it the Linux GTK4/ruisapp link fails with undefined vkCreate*SurfaceKHR.
+            libvulkan-dev \
             libpulse-dev \
             libltdl-dev \
             autoconf \
