@@ -85,7 +85,8 @@ jobs:
           cmake --build --preset ${{ matrix.config }} --target test
 ##### macosx #####
   macosx:
-    timeout-minutes: 60
+    # the full build on a macos runner takes about 55 minutes
+    timeout-minutes: 90
     runs-on: macos-latest
     strategy:
       fail-fast: false
