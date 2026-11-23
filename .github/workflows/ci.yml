@@ -10,6 +10,7 @@ on:
 jobs:
 ##### linux #####
   linux:
+    timeout-minutes: 60
     strategy:
       fail-fast: false
       matrix:
@@ -25,7 +26,7 @@ jobs:
       - name: install build tools
         run: |
           sudo apt --quiet update --yes
-          sudo apt --quiet install --yes build-essential cmake pkg-config git curl zip unzip tar procps
+          sudo apt --quiet install --yes build-essential cmake bison pkg-config git curl zip unzip tar procps
       - name: increase swap size
         run: |
           free -h
@@ -48,6 +49,10 @@ jobs:
             libgtk-4-dev \
             libpulse-dev \
             libltdl-dev \
+            libx11-dev \
+            libvulkan-dev \
+            libwayland-dev \
+            libxkbcommon-dev \
             autoconf \
             autoconf-archive \
             automake \
@@ -74,13 +79,15 @@ jobs:
       - name: build
         run: |
           cd build/cmake
-          cmake --build --preset ${{ matrix.config }}
+          cmake --build --preset ${{ matrix.config }} --parallel $(nproc)
       - name: test
         run: |
           cd build/cmake
-          cmake --build --preset ${{ matrix.config }} --target test
+          cmake --build --preset ${{ matrix.config }} --target test --parallel $(nproc)
 ##### macosx #####
   macosx:
+    # the full build on a macos runner takes about 55 minutes
+    timeout-minutes: 90
     runs-on: macos-latest
     strategy:
       fail-fast: false
@@ -120,13 +127,14 @@ jobs:
     - name: build
       run: |
         cd build/cmake
-        cmake --build --preset ${{ matrix.config }}
+        cmake --build --preset ${{ matrix.config }} --parallel $(sysctl -n hw.ncpu)
     - name: test
       run: |
         cd build/cmake
-        cmake --build --preset ${{ matrix.config }} --target test
+        cmake --build --preset ${{ matrix.config }} --target test --parallel $(sysctl -n hw.ncpu)
 ##### windows #####
   windows:
+    timeout-minutes: 60
     runs-on: windows-latest
     defaults:
       run:
@@ -161,11 +169,11 @@ jobs:
     - name: build
       run: |
         cd build/cmake
-        cmake --build --preset ${{ matrix.config }}
+        cmake --build --preset ${{ matrix.config }} --parallel $env:NUMBER_OF_PROCESSORS
     - name: test
       run: |
         cd build/cmake
-        cmake --build --preset ${{ matrix.config }} --target test
+        cmake --build --preset ${{ matrix.config }} --target test --parallel $env:NUMBER_OF_PROCESSORS
     - name: upload vcpkg logs to artifacts
       if: always() # even if previous steps fail, this one needs to be run
       uses: actions/upload-artifact@v7
@@ -178,6 +186,7 @@ jobs:
         if-no-files-found: warn
 ##### ios #####
   ios:
+    timeout-minutes: 60
     runs-on: macos-latest
     strategy:
       fail-fast: false
@@ -210,14 +219,15 @@ jobs:
       uses: myci-actions/export-env-var@main
       with: {name: PATH, value: "$PATH:$VCPKG_ROOT"}
     - name: install ci tools
-      run: brew install cmake
+      run: |
+        brew install cmake
     - name: generate cmake build files
       run: |
         cmake build/cmake --preset ios-${{ matrix.config }}
     - name: build
       run: |
         cd build/cmake
-        cmake --build --preset ios-${{ matrix.config }}
+        cmake --build --preset ios-${{ matrix.config }} --parallel $(sysctl -n hw.ncpu)
     # - name: test
     #   run: |
     #     cd build/cmake
