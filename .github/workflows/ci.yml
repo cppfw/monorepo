@@ -78,11 +78,11 @@ jobs:
       - name: build
         run: |
           cd build/cmake
-          cmake --build --preset ${{ matrix.config }}
+          cmake --build --preset ${{ matrix.config }} --parallel 4
       - name: test
         run: |
           cd build/cmake
-          cmake --build --preset ${{ matrix.config }} --target test
+          cmake --build --preset ${{ matrix.config }} --target test --parallel 4
 ##### macosx #####
   macosx:
     # the full build on a macos runner takes about 55 minutes
