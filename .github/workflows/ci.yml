@@ -50,6 +50,7 @@ jobs:
             libpulse-dev \
             libltdl-dev \
             libx11-dev \
+            libvulkan-dev \
             libwayland-dev \
             libxkbcommon-dev \
             autoconf \
@@ -78,11 +79,11 @@ jobs:
       - name: build
         run: |
           cd build/cmake
-          cmake --build --preset ${{ matrix.config }} --parallel 4
+          cmake --build --preset ${{ matrix.config }} --parallel $(nproc)
       - name: test
         run: |
           cd build/cmake
-          cmake --build --preset ${{ matrix.config }} --target test --parallel 4
+          cmake --build --preset ${{ matrix.config }} --target test --parallel $(nproc)
 ##### macosx #####
   macosx:
     # the full build on a macos runner takes about 55 minutes
@@ -119,13 +120,7 @@ jobs:
       uses: myci-actions/export-env-var@main
       with: {name: PATH, value: "$PATH:$VCPKG_ROOT"}
     - name: install ci tools
-      run: |
-        brew install cmake bison
-        # bison is keg-only because macOS already ships /usr/bin/bison (an old
-        # 2.3 that does not support the `%language` directive), so link it
-        # explicitly to make the brew version take precedence in the PATH
-        brew link --force --overwrite bison
-        bison --version
+      run: brew install cmake
     - name: generate cmake build files
       run: |
         cmake build/cmake --preset ${{ matrix.config }}
@@ -168,12 +163,6 @@ jobs:
       # this is needed at least for actions/upload-artifact to be able to find vcpkg install logs
       shell: powershell
       run: New-Item -ItemType SymbolicLink -Path vcpkg-installation -Target $env:VCPKG_ROOT
-    - name: install bison
-      # bison is not pre-installed on the windows image, install it from the pre-installed MSYS2
-      run: |
-        C:\msys64\usr\bin\pacman.exe -Sy --noconfirm --needed bison
-        C:\msys64\usr\bin\bison.exe --version
-        Add-Content -Path $env:GITHUB_PATH -Value "C:\msys64\usr\bin"
     - name: generate cmake build files
       run: |
         cmake build/cmake --preset ${{ matrix.config }} -A ${{ matrix.arch }}
