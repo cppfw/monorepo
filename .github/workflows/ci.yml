@@ -169,11 +169,11 @@ jobs:
     - name: build
       run: |
         cd build/cmake
-        cmake --build --preset ${{ matrix.config }}
+        cmake --build --preset ${{ matrix.config }} --parallel $env:NUMBER_OF_PROCESSORS
     - name: test
       run: |
         cd build/cmake
-        cmake --build --preset ${{ matrix.config }} --target test
+        cmake --build --preset ${{ matrix.config }} --target test --parallel $env:NUMBER_OF_PROCESSORS
     - name: upload vcpkg logs to artifacts
       if: always() # even if previous steps fail, this one needs to be run
       uses: actions/upload-artifact@v7
