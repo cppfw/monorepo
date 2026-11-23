@@ -226,12 +226,7 @@ jobs:
       with: {name: PATH, value: "$PATH:$VCPKG_ROOT"}
     - name: install ci tools
       run: |
-        brew install cmake bison
-        # bison is keg-only because macOS already ships /usr/bin/bison (an old
-        # 2.3 that does not support the `%language` directive), so link it
-        # explicitly to make the brew version take precedence in the PATH
-        brew link --force --overwrite bison
-        bison --version
+        brew install cmake
     - name: generate cmake build files
       run: |
         cmake build/cmake --preset ios-${{ matrix.config }}
