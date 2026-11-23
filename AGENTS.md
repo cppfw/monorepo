@@ -12,9 +12,5 @@ This is the monorepo for `cppfw` C++ framework.
 
 # instructions
 
-- After editing code, always rebuild the `all` target and run tests without asking user for confirmation.
-- Use build skill to build all applications and all libraries, use `dbg` preset
-- Use run_app skill to run applications
-- Use run_tests skill to run tests
-- Do not mind code formatting like tabs/spaces etc. when writing code. Use `format` skill to apply formatting after the code is written.
-- Do not commit or push to git without being explicitly asked.
+- After editing code, always rebuild everything (no specific target) and run tests without asking user for confirmation.
+- All changes must be made via Pull Request.
