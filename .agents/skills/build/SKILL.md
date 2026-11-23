@@ -9,8 +9,9 @@ Use CMake to build libraries and applications.
 
 Run:
 
-`cmake --build out/<preset> --target <application-name> --parallel`
+`cmake --build out/<preset> --target <application-name> --parallel <jobs>`
 
+- Set `<jobs>` to an explicit number of parallel jobs. On Linux it can be `$(nproc)`, on macOS `$(sysctl -n hw.ncpu)`, and on Windows (PowerShell) `$env:NUMBER_OF_PROCESSORS`.
 - To build everything, omit the target entirely — the default target is `all` (single-config generators) or `ALL_BUILD` (multi-config generators like Visual Studio), which is equivalent in both cases. Note: `--target all` does not work with multi-config generators, and the `all` name is reserved by CMake and cannot be redefined.
 - The `CMakeLists.txt` file is usually located in `build/cmake` directory of the project repo.
 - Do not use application or library local CMake build files. Use the `monorepo`'s `build/cmake/CMakePresets.json` to build any single app/lib or all.
