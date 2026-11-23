@@ -127,11 +127,11 @@ jobs:
     - name: build
       run: |
         cd build/cmake
-        cmake --build --preset ${{ matrix.config }}
+        cmake --build --preset ${{ matrix.config }} --parallel $(sysctl -n hw.ncpu)
     - name: test
       run: |
         cd build/cmake
-        cmake --build --preset ${{ matrix.config }} --target test
+        cmake --build --preset ${{ matrix.config }} --target test --parallel $(sysctl -n hw.ncpu)
 ##### windows #####
   windows:
     timeout-minutes: 60
@@ -227,7 +227,7 @@ jobs:
     - name: build
       run: |
         cd build/cmake
-        cmake --build --preset ios-${{ matrix.config }}
+        cmake --build --preset ios-${{ matrix.config }} --parallel $(sysctl -n hw.ncpu)
     # - name: test
     #   run: |
     #     cd build/cmake
