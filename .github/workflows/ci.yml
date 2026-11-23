@@ -113,7 +113,7 @@ jobs:
       uses: myci-actions/export-env-var@main
       with: {name: PATH, value: "$PATH:$VCPKG_ROOT"}
     - name: install ci tools
-      run: brew install cmake
+      run: brew install cmake bison
     - name: generate cmake build files
       run: |
         cmake build/cmake --preset ${{ matrix.config }}
@@ -210,7 +210,7 @@ jobs:
       uses: myci-actions/export-env-var@main
       with: {name: PATH, value: "$PATH:$VCPKG_ROOT"}
     - name: install ci tools
-      run: brew install cmake
+      run: brew install cmake bison
     - name: generate cmake build files
       run: |
         cmake build/cmake --preset ios-${{ matrix.config }}
