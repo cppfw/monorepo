@@ -10,6 +10,7 @@ on:
 jobs:
 ##### linux #####
   linux:
+    timeout-minutes: 60
     strategy:
       fail-fast: false
       matrix:
@@ -84,6 +85,7 @@ jobs:
           cmake --build --preset ${{ matrix.config }} --target test
 ##### macosx #####
   macosx:
+    timeout-minutes: 60
     runs-on: macos-latest
     strategy:
       fail-fast: false
@@ -136,6 +138,7 @@ jobs:
         cmake --build --preset ${{ matrix.config }} --target test
 ##### windows #####
   windows:
+    timeout-minutes: 60
     runs-on: windows-latest
     defaults:
       run:
@@ -193,6 +196,7 @@ jobs:
         if-no-files-found: warn
 ##### ios #####
   ios:
+    timeout-minutes: 60
     runs-on: macos-latest
     strategy:
       fail-fast: false
