@@ -25,7 +25,7 @@ jobs:
       - name: install build tools
         run: |
           sudo apt --quiet update --yes
-          sudo apt --quiet install --yes build-essential cmake pkg-config git curl zip unzip tar procps
+          sudo apt --quiet install --yes build-essential cmake bison pkg-config git curl zip unzip tar procps
       - name: increase swap size
         run: |
           free -h
@@ -48,6 +48,9 @@ jobs:
             libgtk-4-dev \
             libpulse-dev \
             libltdl-dev \
+            libx11-dev \
+            libwayland-dev \
+            libxkbcommon-dev \
             autoconf \
             autoconf-archive \
             automake \
@@ -113,7 +116,9 @@ jobs:
       uses: myci-actions/export-env-var@main
       with: {name: PATH, value: "$PATH:$VCPKG_ROOT"}
     - name: install ci tools
-      run: brew install cmake
+      run: |
+        brew install cmake bison
+        bison --version
     - name: generate cmake build files
       run: |
         cmake build/cmake --preset ${{ matrix.config }}
@@ -155,6 +160,12 @@ jobs:
       # this is needed at least for actions/upload-artifact to be able to find vcpkg install logs
       shell: powershell
       run: New-Item -ItemType SymbolicLink -Path vcpkg-installation -Target $env:VCPKG_ROOT
+    - name: install bison
+      # bison is not pre-installed on the windows image, install it from the pre-installed MSYS2
+      run: |
+        C:\msys64\usr\bin\pacman.exe -Sy --noconfirm --needed bison
+        C:\msys64\usr\bin\bison.exe --version
+        Add-Content -Path $env:GITHUB_PATH -Value "C:\msys64\usr\bin"
     - name: generate cmake build files
       run: |
         cmake build/cmake --preset ${{ matrix.config }} -A ${{ matrix.arch }}
@@ -210,7 +221,9 @@ jobs:
       uses: myci-actions/export-env-var@main
       with: {name: PATH, value: "$PATH:$VCPKG_ROOT"}
     - name: install ci tools
-      run: brew install cmake
+      run: |
+        brew install cmake bison
+        bison --version
     - name: generate cmake build files
       run: |
         cmake build/cmake --preset ios-${{ matrix.config }}
