@@ -50,7 +50,6 @@ jobs:
             libpulse-dev \
             libltdl-dev \
             libx11-dev \
-            libvulkan-dev \
             libwayland-dev \
             libxkbcommon-dev \
             autoconf \

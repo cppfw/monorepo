@@ -14,9 +14,14 @@
             "platform": "windows"
         },
         "curl",
+        "vulkan",
         {
-            "name": "vulkan",
-            "platform": "!linux"
+            "name": "vulkan-loader",
+            "features": [
+                "xlib",
+                "wayland"
+            ],
+            "platform": "linux"
         }
     ]
 }
