@@ -8,7 +8,10 @@ on:
     branches:
       - main
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  # for push events (branches and tags) group by the pushed commit sha, so that a
+  # tag build pushed after a branch build on the same commit cancels the branch
+  # build and remains. for pull requests group by ref (refs/pull/N/merge).
+  group: ${{ github.workflow }}-${{ github.event_name == 'push' && github.sha || github.ref }}
   cancel-in-progress: true
 jobs:
 ##### linux #####
