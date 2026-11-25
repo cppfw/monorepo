@@ -5,6 +5,25 @@
 
 cd "$(dirname "$0")/.." || exit 1
 
+usage() {
+    cat <<'EOF'
+pull.sh — git pull the current branch in every repository:
+the monorepo itself, each repository under repos/, and each application
+under apps/.
+
+Usage: pull.sh [options]
+Options:
+  -h, --help    show this help and exit
+EOF
+}
+
+for arg in "$@"; do
+    case "$arg" in
+        -h|--help) usage; exit 0 ;;
+        *) echo "unknown option: $arg" >&2; usage >&2; exit 1 ;;
+    esac
+done
+
 YELLOW='\033[1;33m'
 PURPLE='\033[0;35m'
 GREEN='\033[1;32m'
