@@ -8,14 +8,43 @@ on:
     branches:
       - main
 concurrency:
-  # for push events (branches and tags) group by the pushed commit sha, so that a
-  # tag build pushed after a branch build on the same commit cancels the branch
-  # build and remains. for pull requests group by ref (refs/pull/N/merge).
-  group: ${{ github.workflow }}-${{ github.event_name == 'push' && github.sha || github.ref }}
+  # group by ref: a new push to a branch or pull request cancels the in-progress run of the
+  # same branch or pull request. branch and tag builds do not share a group, so the tag build
+  # priority is enforced by the tag-priority job instead (a concurrency group cancels the
+  # older run, which would not give the tag build priority when the branch run starts later)
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 jobs:
+  tag-priority:
+    # enforce that the tag build always wins over the branch build on the same commit,
+    # regardless of the order in which the runs start:
+    # - in a tag build: cancel the in-progress branch build on the same commit
+    # - in a branch build: cancel this run when a tag build on the same commit is in progress
+    # all the other jobs depend on this job, so the cancellation happens before the builds start
+    if: github.ref_type == 'tag' || (github.event_name == 'push' && github.ref_type == 'branch')
+    runs-on: ubuntu-latest
+    steps:
+      - name: enforce tag build priority
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ "${GITHUB_REF_TYPE}" = tag ]; then
+            for id in $(gh api "repos/${GITHUB_REPOSITORY}/actions/runs?status=in_progress&per_page=100" --paginate \
+                -q ".workflow_runs[] | select(.head_sha == \"${GITHUB_SHA}\" and .event == \"push\" and .name == \"ci\" and .head_branch != null and .head_branch != \"\") | .id"); do
+              echo "cancelling in-progress branch build (run $id) on the same commit"
+              gh api -X POST "repos/${GITHUB_REPOSITORY}/actions/runs/$id/cancelations"
+            done
+          else
+            for id in $(gh api "repos/${GITHUB_REPOSITORY}/actions/runs?status=in_progress&per_page=100" --paginate \
+                -q ".workflow_runs[] | select(.head_sha == \"${GITHUB_SHA}\" and .event == \"push\" and .name == \"ci\" and (.head_branch == null or .head_branch == \"\")) | .id"); do
+              echo "a tag build (run $id) on the same commit is in progress; cancelling this branch build"
+              gh api -X POST "repos/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/cancelations"
+              exit 0
+            done
+          fi
 ##### linux #####
   linux:
+    needs: tag-priority
     timeout-minutes: 60
     strategy:
       fail-fast: false
@@ -91,6 +120,7 @@ jobs:
           cmake --build --preset ${{ matrix.config }} --target test --parallel $(nproc)
 ##### macosx #####
   macosx:
+    needs: tag-priority
     # the full build on a macos runner takes about 55 minutes
     timeout-minutes: 90
     runs-on: macos-latest
@@ -139,6 +169,7 @@ jobs:
         cmake --build --preset ${{ matrix.config }} --target test --parallel $(sysctl -n hw.ncpu)
 ##### windows #####
   windows:
+    needs: tag-priority
     timeout-minutes: 60
     runs-on: windows-latest
     defaults:
@@ -191,6 +222,7 @@ jobs:
         if-no-files-found: warn
 ##### ios #####
   ios:
+    needs: tag-priority
     timeout-minutes: 60
     runs-on: macos-latest
     strategy:
