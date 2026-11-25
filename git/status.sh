@@ -1,4 +1,8 @@
 #!/bin/bash
+# status.sh — git status of the monorepo and each app under apps/.
+# Run from anywhere: ./git/status.sh
+
+cd "$(dirname "$0")/.." || exit 1
 
 YELLOW='\033[1;33m'
 PURPLE='\033[0;35m'

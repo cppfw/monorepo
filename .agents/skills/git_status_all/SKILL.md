@@ -7,9 +7,9 @@ description: Get the git status of all the subrepos of the monorepo (the monorep
 
 Get the git status of all the subrepos of the monorepo (the monorepo itself and each app in the `apps/` directory).
 
-Run the `git_status.sh` script from the root of the monorepo:
+Run the `status.sh` script from the root of the monorepo:
 
-`./git_status.sh`
+`./git/status.sh`
 
 It prints:
 - `git status` for the monorepo (mentioning submodules if there is modified content)
