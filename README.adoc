@@ -2,6 +2,14 @@
 
 Repositories of **cppfw** libraries are added as submodules under the `repos/` directory.
 
+== Git helper scripts
+
+The `git/` directory contains git helper scripts that operate on the monorepo itself, each repository under `repos/` and each application under `apps/`:
+
+- `git/pull.sh` — git pull the current branch in every repository
+- `git/main.sh` — switch every repository to the latest `main` branch
+- `git/status.sh` — git status of the monorepo and each application
+
 == Building with CMake
 
 === Prerequisites
