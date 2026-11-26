@@ -13,4 +13,5 @@ Use the `gh` CLI to access GitHub (e.g. CI runs and job logs, releases, issues, 
 - The PR must be created from a **fork** of the repo.
 - Pushing to the fork repo can be done using `git` via ssh.
 - After creating a PR, invite `igagis` to review it and assign the PR to `igagis` using `gh`.
+- Once the PR CI is green, the PR can be merged using `gh`.
 - After the PR is merged, remove the PR branch (the local branch and the fork/remote branch).
